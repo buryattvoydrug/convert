@@ -25,7 +25,7 @@ function Convert({rates}: {rates: Valute}) {
   const amountFrom = valuteFrom === 'RUB' 
                      ? 1
                      : rates[valuteFrom].Value
-  const amount = amountTo / amountFrom
+  const amount = amountFrom / amountTo
 
   return (
     <>
