@@ -1,10 +1,11 @@
 import { Container, FormControl, MenuItem, Select, SelectChangeEvent, TextField, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { DEFAULT_VALUTES } from "./Convert";
 
-export const ConvertTo = ({valutesList, valueToConvert, valute, onChangeValute}: {
+export const ConvertTo = ({valutesList, valueToConvert, valute, amount, onChangeValute}: {
   valutesList: Array<string>, 
   valueToConvert: number,
   valute: string,
+  amount: number,
   onChangeValute: (newValute: string) => void
 }) => {
 
@@ -42,7 +43,7 @@ return (
       inputProps={{style: {fontSize: 32, fontWeight: 900}}}
       sx={{marginY: 1}}
       type="number"
-      value={(valueToConvert * 60.56).toFixed(2)}
+      value={(valueToConvert * amount).toFixed(4)}
     />
     </Container>
 )

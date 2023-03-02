@@ -1,5 +1,5 @@
 export interface Valute {
-  valute: { [key: string]: ValuteValue };
+  [key: string]: ValuteValue;
 }
 
 export interface ValuteValue {

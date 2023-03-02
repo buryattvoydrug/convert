@@ -19,6 +19,14 @@ function Convert({rates}: {rates: Valute}) {
     setValueToConvert(+event.target.value)
   }
 
+  const amountTo = valuteTo === 'RUB' 
+                   ? 1
+                   : rates[valuteTo].Value
+  const amountFrom = valuteFrom === 'RUB' 
+                     ? 1
+                     : rates[valuteFrom].Value
+  const amount = amountTo / amountFrom
+
   return (
     <>
       <Container sx={{fontSize: 22}}>
@@ -36,6 +44,7 @@ function Convert({rates}: {rates: Valute}) {
         valute={valuteTo}
         onChangeValute={setValuteTo}
         valueToConvert={valueToConvert}
+        amount={amount}
         />
     </>
   );
