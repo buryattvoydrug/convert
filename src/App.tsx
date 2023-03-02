@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import Convert from './components/Convert'
+import { Valute } from './types'
 
-function App() {
+export default function App() {
+
+  const [rates, setRates] = useState<Valute | null>(null)
+  const [date, setDate] = useState<string>()
+
+  useEffect(() => {
+    fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+      .then((res) => (res.json()))
+      .then((json) => {
+        const valute = json.Valute
+        setRates(valute)
+        const date = new Date(json.Date)
+        setDate(date.toLocaleDateString())
+      })
+      .catch((err) => {
+        console.log(err.message)
+      })
+  },[])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <Container sx={{fontSize: 14, paddingTop: 3}}>
+        <span>Курс ЦБ на {date}</span>
+      </Container>
+      {rates && <Convert rates={rates}/>}
+    </>
+  )
 }
-
-export default App;
