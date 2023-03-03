@@ -43,7 +43,7 @@ return (
       inputProps={{style: {fontSize: 32, fontWeight: 900}}}
       sx={{marginY: 1}}
       type="number"
-      value={(valueToConvert * amount).toFixed(4)}
+      value={amount}
     />
     </Container>
 )

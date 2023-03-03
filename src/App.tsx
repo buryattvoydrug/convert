@@ -1,4 +1,4 @@
-import { Container } from '@mui/material'
+import { Container, Fade, Grow } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import Convert from './components/Convert'
 import { Valute } from './types'
@@ -24,10 +24,17 @@ export default function App() {
 
   return (
     <>
-      <Container sx={{fontSize: 14, paddingTop: 3}}>
-        <span>Курс ЦБ на {date}</span>
-      </Container>
-      {rates && <Convert rates={rates}/>}
+      <Fade in={!!date} timeout={1200} unmountOnExit>
+        <Container sx={{fontSize: 14, paddingTop: 3}}>
+          <span>Курс ЦБ на {date}</span>
+        </Container>
+      </Fade>
+      <Grow in={!!rates} timeout={600} unmountOnExit>
+        <div>
+        {rates && 
+        <Convert rates={rates}/>}
+        </div>
+      </Grow>
     </>
   )
 }

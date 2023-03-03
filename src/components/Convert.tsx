@@ -21,11 +21,11 @@ function Convert({rates}: {rates: Valute}) {
 
   const amountTo = valuteTo === 'RUB' 
                    ? 1
-                   : rates[valuteTo].Value
+                   : rates[valuteTo].Value / rates[valuteTo].Nominal
   const amountFrom = valuteFrom === 'RUB' 
                      ? 1
-                     : rates[valuteFrom].Value
-  const amount = amountFrom / amountTo
+                     : rates[valuteFrom].Value / rates[valuteFrom].Nominal
+  const amount = +(valueToConvert * amountFrom / amountTo).toFixed(4)
 
   return (
     <>
